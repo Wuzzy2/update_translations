@@ -20,14 +20,16 @@ params = {"recursive": False,
     "mods": False,
     "verbose": False,
     "folders": [],
-    "no-old-file": False
+    "no-old-file": False,
+    "sort": False
 }
 # Available CLI options
 options = {"recursive": ['--recursive', '-r'],
     "help": ['--help', '-h'],
     "mods": ['--installed-mods'],
     "verbose": ['--verbose', '-v'],
-    "no-old-file": ['--no-old-file']
+    "no-old-file": ['--no-old-file'],
+    "sort": ['--sort', '-s']
 }
 
 # Strings longer than this will have extra space added between
@@ -68,6 +70,8 @@ DESCRIPTION
         run on locally installed modules
     {', '.join(options["no-old-file"])}
         do not create *.old files
+    {', '.join(options["sort"])}
+        sort strings alphabetically
     {', '.join(options["verbose"])}
         add output information
 ''')
@@ -216,7 +220,8 @@ def strings_to_text(dkeyStrings, dOld, mod_name):
 
     for key in dkeyStrings:
         sourceList = list(dkeyStrings[key])
-        sourceList.sort()
+        if params["sort"]:
+            sourceList.sort()
         sourceString = "\n".join(sourceList)
         listForSource = dGroupedBySource.get(sourceString, [])
         listForSource.append(key)
@@ -226,7 +231,8 @@ def strings_to_text(dkeyStrings, dOld, mod_name):
     lSourceKeys.sort()
     for source in lSourceKeys:
         localizedStrings = dGroupedBySource[source]
-        localizedStrings.sort()
+        if params["sort"]:
+            localizedStrings.sort()
         for localizedString in localizedStrings:
             val = dOld.get(localizedString, {})
             translation = val.get("translation", "")
