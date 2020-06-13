@@ -35,7 +35,7 @@ options = {"recursive": ['--recursive', '-r'],
 # Strings longer than this will have extra space added between
 # them in the translation files to make it easier to distinguish their
 # beginnings and endings at a glance
-doublespace_threshold = 60
+doublespace_threshold = 80
 
 def set_params_folders(tab: list):
     '''Initialize params["folders"] from CLI arguments.'''
