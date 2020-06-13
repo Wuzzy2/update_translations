@@ -210,7 +210,7 @@ def mkdir_p(path):
 # dOld is a dictionary of existing translations and comments from
 # the previous version of this text
 def strings_to_text(dkeyStrings, dOld, mod_name):
-    lOut = [f"# textdomain: {mod_name}\n"]
+    lOut = [f"# textdomain: {mod_name}"]
     
     dGroupedBySource = {}
 
@@ -227,16 +227,13 @@ def strings_to_text(dkeyStrings, dOld, mod_name):
     for source in lSourceKeys:
         localizedStrings = dGroupedBySource[source]
         localizedStrings.sort()
-        lOut.append("")
-        lOut.append(source)
-        lOut.append("")
         for localizedString in localizedStrings:
             val = dOld.get(localizedString, {})
             translation = val.get("translation", "")
             comment = val.get("comment")
             if len(localizedString) > doublespace_threshold and not lOut[-1] == "":
                 lOut.append("")
-            if comment != None:
+            if comment != None and comment != "" and not comment.startswith("# textdomain:"):
                 lOut.append(comment)
             lOut.append(f"{localizedString}={translation}")
             if len(localizedString) > doublespace_threshold:
