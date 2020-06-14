@@ -1,6 +1,6 @@
-This Python script is intended for use with localized Minetest mods, ie, mods that contain translatable strings of the form ``S("This string can be translated")``. It extracts the strings from the mod's source code and updates the localization files accordingly.
+This Python script is intended for use with localized Minetest mods, ie, mods that contain translatable strings of the form `S("This string can be translated")`. It extracts the strings from the mod's source code and updates the localization files accordingly.
 
-Place it in the root directory of a mod and run it, and it will update the ``template.txt`` and any ``*.tr`` files present in that mod's ``/locale`` folder. If the ``/locale`` folder or ``template.txt`` file don't exist yet they will be created.
+Place it in the root directory of a mod and run it, and it will update the `template.txt` and any `*.tr` files present in that mod's `/locale` folder. If the `/locale` folder or `template.txt` file don't exist yet they will be created.
 
 This script will also work in the root directory of a modpack. It will run on each mod inside the modpack in that situation.
 
@@ -9,14 +9,15 @@ It has the following command line options:
 ```
 i18n.py [OPTIONS] [PATHS...]
 
---help, -h : prints this help message
---recursive, -r : run on all subfolders of paths given
---installed-mods : run on locally installed modules
---no-old-file : do not create *.old files
---verbose, -v : add output information
+--help, -h: prints this help message
+--recursive, -r: run on all subfolders of paths given
+--installed-mods, -m: run on locally installed modules
+--no-old-file, -O: do not create *.old files
+--verbose, -v: add output information
+--sort, -s: sort strings
 ```
 
-The script will preserve any comments in an existing ``template.txt`` or the various ``*.tr`` files, associating them with the line that follows them. So for example:
+The script will preserve any comments in an existing `template.txt` or the various `*.tr` files, associating them with the line that follows them. So for example:
 
 ```
 # This comment pertains to Some Text
@@ -39,7 +40,7 @@ This allows for old translations and comments to be reused with new lines where 
 
 ## bash autocompletion
 
-When running on linux to install bash_completion for i18n, you can run
+When running on Linux to install `bash_completion` for I18N, you can run
 
 ```
 mkdir -p ${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions
