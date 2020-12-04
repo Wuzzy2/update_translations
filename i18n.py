@@ -136,7 +136,10 @@ def get_modname(folder):
                 if match:
                     return match.group(1)
     except FileNotFoundError:
-        pass
+        if not os.path.isfile(os.path.join(folder, "modpack.txt")):
+            return os.path.basename(folder)
+        else:
+            return None
     return None
 
 #If there are already .tr files in /locale, returns a list of their names
